@@ -12,6 +12,10 @@
 # ============================================
 
 # --- Step 0: Backup Existing Dotfiles ---
+# Get the absolute path of the directory where this script is located.
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+echo "Using dotfiles from: $SCRIPT_DIR"
+
 echo "Backing up existing dotfiles (if any)..."
 [ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.backup
 [ -d ~/.config/nvim ] && mv ~/.config/nvim ~/.config/nvim.backup
@@ -88,12 +92,12 @@ fi
 # --- Step 6: Create Symlinks for Dotfiles ---
 echo "Creating symlinks for dotfiles..."
 
-# Symlink the Zsh configuration file (assumes your dotfiles repo has a file named "zshrc")
-ln -sf ~/dotfiles/zshrc ~/.zshrc
+# Create symlink for the Zsh configuration
+ln -sf "$SCRIPT_DIR/zshrc" "$HOME/.zshrc"
 
-# Ensure the Neovim config parent directory exists and symlink the Neovim config directory
-mkdir -p ~/.config
-ln -sf ~/dotfiles/nvim ~/.config/nvim
+# Create symlink for the Neovim configuration
+mkdir -p "$HOME/.config"
+ln -sf "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
 
 echo "Symlinks created for Zsh and Neovim!"
 
