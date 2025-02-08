@@ -13,11 +13,12 @@ setopt SHARE_HISTORY
 
 # Aliases
 alias bat="batcat"
-alias nv="nvim"
+alias n="nvim"
 alias la="ls -la --color=auto"
 alias ls="ls --color=auto"
 alias c="clear"
 alias lg="lazygit"
+alias e="exit"
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
