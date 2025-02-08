@@ -32,12 +32,12 @@ if [ "$OS_TYPE" == "Darwin" ]; then
   brew update
   
   # Install zsh, fd, and node
-  brew install zsh fd node
+  brew install zsh fd node tmux
 elif [ "$OS_TYPE" == "Linux" ]; then
   echo "Running on Linux. Using apt to install packages..."
   sudo apt update
   # On Debian/Ubuntu-based systems, 'fd' is provided by fd-find.
-  sudo apt install -y zsh fd-find nodejs npm xclip
+  sudo apt install -y zsh fd-find nodejs npm xclip tmux
   # On some Linux distributions the fd binary is installed as 'fdfind'
   # You may want to create a symlink to 'fd' for consistency:
   if ! command -v fd >/dev/null 2>&1 && command -v fdfind >/dev/null 2>&1; then
@@ -89,7 +89,11 @@ if [ ! -d "$HOME/.zsh/pure" ]; then
   git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 fi
 
-# --- Step 6: Create Symlinks for Dotfiles ---
+# --- Step 6: Install Tmux Plugin Manager ---
+mkdir -p "$HOME/.tmux/plugins"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# --- Step 7: Create Symlinks for Dotfiles ---
 echo "Creating symlinks for dotfiles..."
 
 # Create symlink for the Zsh configuration
@@ -99,7 +103,10 @@ ln -sf "$SCRIPT_DIR/zshrc" "$HOME/.zshrc"
 mkdir -p "$HOME/.config"
 ln -sf "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
 
-echo "Symlinks created for Zsh and Neovim!"
+# Create symlink for the Tmux configuration
+ln -sf "$SCRIPT_DIR/tmux.conf" "$HOME/.tmux.conf"
+
+echo "Symlinks created for Zsh and Neovim and Tmux!"
 
 # --- Final Message ---
 echo "Installation complete! Please restart your terminal for all changes to take effect."

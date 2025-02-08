@@ -6,6 +6,7 @@ vim.g.mapleader= " "
 vim.opt.number= true
 vim.opt.relativenumber= true
 vim.opt.clipboard ="unnamedplus"
+vim.opt.termguicolors = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
