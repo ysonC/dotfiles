@@ -5,6 +5,10 @@
 
 # Create symlinks
 ln -s ~/dotfiles/zshrc ~/.zshrc
+# Install Pure prompt
+mkdir -p "$HOME/.zsh"
+git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+
 
 mkdir -p ~/.config
 ln -s ~/dotfiles/nvim ~/.config/nvim
