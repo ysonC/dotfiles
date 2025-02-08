@@ -26,6 +26,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Prompt
 export PURE_GIT_PULL=1
+export PURE_CMD_MAX_EXEC_TIME=99999
 autoload -U promptinit; promptinit
 prompt pure
 # Clear the username from Pure’s left prompt state.

@@ -3,8 +3,13 @@
 [ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.backup
 [ -d ~/.config/nvim ] && mv ~/.config/nvim ~/.config/nvim.backup
 
+# Install some stuff first
+sudo apt install zsh fd-find nodejs npm xclip -y
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash 
+nvm install 18 
+nvm use 18
+
 # Setup ZSH
-sudo apt install zsh -y
 sudo chsh -s $(which zsh)
 # Install Plugin
 mkdir -p "$HOME/.zsh"
