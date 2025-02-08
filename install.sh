@@ -1,30 +1,102 @@
 #!/bin/bash
-# Backup existing dotfiles if they exist
+# ============================================
+# Dotfiles Installer for macOS and Linux
+# This script backs up your current dotfiles,
+# installs required packages, sets up nvm and Node.js,
+# configures Zsh with plugins (including Pure prompt),
+# and creates symlinks for your dotfiles.
+#
+# This script detects your OS (macOS or Linux) and
+# installs packages accordingly. On Linux (both ARM and AMD),
+# it uses apt; on macOS it uses Homebrew.
+# ============================================
+
+# --- Step 0: Backup Existing Dotfiles ---
+echo "Backing up existing dotfiles (if any)..."
 [ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.backup
 [ -d ~/.config/nvim ] && mv ~/.config/nvim ~/.config/nvim.backup
 
-# Install some stuff first
-sudo apt install zsh fd-find nodejs npm xclip -y
-curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash 
-nvm install 18 
+# --- Step 1: Detect OS ---
+OS_TYPE=$(uname -s)
+ARCH_TYPE=$(uname -m)
+echo "Detected OS: $OS_TYPE, Architecture: $ARCH_TYPE"
+
+# --- Step 2: Install Required Packages ---
+if [ "$OS_TYPE" == "Darwin" ]; then
+  echo "Running on macOS. Using Homebrew to install packages..."
+  # Update Homebrew
+  brew update
+  
+  # Install zsh, fd, and node
+  brew install zsh fd node
+elif [ "$OS_TYPE" == "Linux" ]; then
+  echo "Running on Linux. Using apt to install packages..."
+  sudo apt update
+  # On Debian/Ubuntu-based systems, 'fd' is provided by fd-find.
+  sudo apt install -y zsh fd-find nodejs npm xclip
+  # On some Linux distributions the fd binary is installed as 'fdfind'
+  # You may want to create a symlink to 'fd' for consistency:
+  if ! command -v fd >/dev/null 2>&1 && command -v fdfind >/dev/null 2>&1; then
+    sudo ln -s "$(command -v fdfind)" /usr/local/bin/fd
+  fi
+else
+  echo "Unsupported OS: $OS_TYPE"
+  exit 1
+fi
+
+# --- Step 3: Install nvm and Node.js v18 ---
+echo "Installing nvm..."
+# Install nvm using the official install script
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+
+# Load nvm into the current shell session.
+export NVM_DIR="$HOME/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  . "$NVM_DIR/nvm.sh"
+else
+  echo "nvm installation not found! Please check the installation steps."
+  exit 1
+fi
+
+echo "Installing Node.js v18..."
+nvm install 18
 nvm use 18
 
-# Setup ZSH
-sudo chsh -s $(which zsh)
-# Install Plugin
+# --- Step 4: Set Zsh as Default Shell ---
+echo "Setting Zsh as the default shell..."
+chsh -s "$(which zsh)"
+
+# --- Step 5: Install Zsh Plugins and Pure Prompt ---
+echo "Setting up Zsh plugins and Pure prompt..."
 mkdir -p "$HOME/.zsh"
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
-# Install Pure prompt
-git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
-# Apply changes
-source ~/.zshrc
 
+# Install Zsh Autosuggestions if not already installed
+if [ ! -d "$HOME/.zsh/zsh-autosuggestions" ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.zsh/zsh-autosuggestions"
+fi
 
-# Create symlinks
-ln -s ~/dotfiles/zshrc ~/.zshrc
+# Install Zsh Syntax Highlighting if not already installed
+if [ ! -d "$HOME/.zsh/zsh-syntax-highlighting" ]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.zsh/zsh-syntax-highlighting"
+fi
 
+# Install Pure prompt if not already installed
+if [ ! -d "$HOME/.zsh/pure" ]; then
+  git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+fi
+
+# --- Step 6: Create Symlinks for Dotfiles ---
+echo "Creating symlinks for dotfiles..."
+
+# Symlink the Zsh configuration file (assumes your dotfiles repo has a file named "zshrc")
+ln -sf ~/dotfiles/zshrc ~/.zshrc
+
+# Ensure the Neovim config parent directory exists and symlink the Neovim config directory
 mkdir -p ~/.config
-ln -s ~/dotfiles/nvim ~/.config/nvim
+ln -sf ~/dotfiles/nvim ~/.config/nvim
 
 echo "Symlinks created for Zsh and Neovim!"
+
+# --- Final Message ---
+echo "Installation complete! Please restart your terminal for all changes to take effect."
+
