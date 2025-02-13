@@ -19,6 +19,7 @@ alias ls="ls --color=auto"
 alias c="clear"
 alias lg="lazygit"
 alias e="exit"
+alias k="kubectl"
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
