@@ -2,6 +2,7 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
+vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 vim.g.mapleader= " "
 vim.opt.number= true
 vim.opt.relativenumber= true
@@ -11,7 +12,6 @@ vim.keymap.set('n', '<leader>q', ':q<CR>')
 vim.opt.scrolloff = 10
 vim.keymap.set('i', 'qq', '<ESC>')
 vim.keymap.set('n', '<leader>y', '"+y')
-
 vim.api.nvim_create_autocmd("TextYankPost",{
     desc = "Highlight yanked text",
     group = vim.api.nvim_create_augroup("kickstart-highlight-yank",{ clear = true }),
@@ -19,6 +19,16 @@ vim.api.nvim_create_autocmd("TextYankPost",{
         vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
     end,
 })
+
+-- Create a command "SetSchema" that calls our script:
+vim.api.nvim_create_user_command("SetSchema", function()
+  require("user.additional-schemas").init()
+end, {})
+
+-- Or create a keymap (e.g. <leader>cs):
+vim.keymap.set("n", "<leader>cs", function()
+  require("user.additional-schemas").init()
+end, { desc = "Choose YAML schema" })
 
 -- Lazy loading
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

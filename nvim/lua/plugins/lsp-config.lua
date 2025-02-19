@@ -12,7 +12,8 @@ return{
                 ensure_installed = {
                     "lua_ls",   --Lua
                     "pyright",  --Python
-                    "gopls"     --Go
+                    "gopls",     --Go
+                    "yamlls"    --YAML
                 }
 
             })
@@ -28,6 +29,19 @@ return{
 
             -- Python Language Server
             lspconfig.pyright.setup({})
+
+            -- YAML
+            lspconfig.yamlls.setup({
+                settings = {
+                    yaml = {
+                        validate = true,
+                        hover = true,
+                        completion = true,
+                    },
+                },
+            })
+
+
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
             vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
