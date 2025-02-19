@@ -11,7 +11,8 @@ SAVEHIST=100000
 setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
-setopt appendhistory
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
 
 # Aliases
 alias bat="batcat"
