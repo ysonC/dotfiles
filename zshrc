@@ -1,5 +1,6 @@
 # Path
 export PATH="$PATH:/opt/nvim/nvim-linux-arm64/bin/"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:/snap/bin"
 fpath+=($HOME/.zsh/pure)
 
