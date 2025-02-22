@@ -38,3 +38,13 @@ git clone git@github.com:yourusername/dotfiles.git ~/dotfiles
 chmod +x install.sh
 ./install.sh
 ```
+
+### 3. Tmux: Install Plugin
+
+Use Shortcut (Ctr + s + I) to reload and install tmux plugin after lauching a session.
+
+```bash
+tmux
+```
+
+
