@@ -25,6 +25,7 @@ alias lg="lazygit"
 alias e="exit"
 alias k="kubectl"
 alias hl="cd ~/super-homelab"
+alias kdr="k apply --dry-run=client -f ."
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
