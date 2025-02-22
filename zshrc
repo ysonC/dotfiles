@@ -24,6 +24,7 @@ alias c="clear"
 alias lg="lazygit"
 alias e="exit"
 alias k="kubectl"
+alias hl="cd ~/super-homelab"
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
