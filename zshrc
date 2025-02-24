@@ -6,14 +6,16 @@ fpath+=($HOME/.zsh/pure)
 
 # History
 HISTFILE=~/.zsh_history
-HISTZIE=100000
+HISTSIZE=100000
 SAVEHIST=100000
 
-setopt HIST_IGNORE_SPACE
-setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_VERIFY
 
 # Aliases
 alias bat="batcat"
@@ -23,6 +25,7 @@ alias ls="ls --color=auto"
 alias c="clear"
 alias lg="lazygit"
 alias e="exit"
+# Alias for kubectl
 alias k="kubectl"
 alias hl="cd ~/super-homelab"
 alias kdr="k apply --dry-run=client -f ."
