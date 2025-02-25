@@ -9,7 +9,7 @@ return{
     opts = {
         window = {
             width = 30,
-            auto_expand_width = true,
+            -- auto_expand_width = true,
         },
         filesystem = {
             filtered_items = {
@@ -22,6 +22,7 @@ return{
             winbar = true,
         },
     },
+---@diagnostic disable-next-line: unused-local
     config = function(__,opts)
         require("neo-tree").setup(opts)
         vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left<CR>', {})

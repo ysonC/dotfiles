@@ -11,7 +11,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.scrolloff = 10
 
 -- Set Keymaps
-vim.keymap.set("n", "<leader>q", ":wq<CR>")
+vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("i", "qq", "<ESC>")
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>w", ":w<CR>")

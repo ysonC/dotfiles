@@ -14,6 +14,7 @@ return {
                     "pyright", --Python
                     "gopls", --Go
                     "yamlls", --YAML
+                    "ts_ls", --TypeScript
                 },
             })
         end,
@@ -23,7 +24,14 @@ return {
         config = function()
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            -- Lua
             lspconfig.lua_ls.setup({
+                capabilities = capabilities,
+            })
+
+            -- Python Language Server
+            lspconfig.pyright.setup({
                 capabilities = capabilities,
                 on_attach = on_attach,
                 settings = {
@@ -39,9 +47,24 @@ return {
                 },
             })
 
-            -- Python Language Server
-            lspconfig.pyright.setup({
+            -- TypeScript
+            lspconfig.ts_ls.setup({
                 capabilities = capabilities,
+                on_attach = function(client)
+                    client.server_capabilities.documentFormatingProvider = false
+                end,
+                settings = {
+                    javascript = {
+                        suggest = {
+                            autoImports = true,
+                        },
+                    },
+                    typescript = {
+                        suggest = {
+                            autoImports = true,
+                        },
+                    },
+                },
             })
 
             -- YAML
