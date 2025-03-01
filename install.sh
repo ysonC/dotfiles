@@ -32,12 +32,12 @@ if [ "$OS_TYPE" == "Darwin" ]; then
   brew update
   
   # Install zsh, fd, and node
-  brew install zsh fd node tmux ripgrep
+  brew install zsh fd node tmux ripgrep neofetch
 elif [ "$OS_TYPE" == "Linux" ]; then
   echo "Running on Linux. Using apt to install packages..."
   sudo apt update
   # On Debian/Ubuntu-based systems, 'fd' is provided by fd-find.
-  sudo apt install -y zsh fd-find nodejs npm xclip tmux ripgrep
+  sudo apt install -y zsh fd-find nodejs npm xclip tmux ripgrep neofetch
   # On some Linux distributions the fd binary is installed as 'fdfind'
   # You may want to create a symlink to 'fd' for consistency:
   if ! command -v fd >/dev/null 2>&1 && command -v fdfind >/dev/null 2>&1; then
