@@ -24,6 +24,7 @@ vim.keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear highlights" })
 vim.keymap.set("n", "<leader>cs", function()
 	require("user.additional-schemas").init()
 end, { desc = "Choose YAML schema" })
+vim.keymap.set("n", "<C-n>", "<cmd>Neotree toggle<CR>", { silent = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight yanked text",
