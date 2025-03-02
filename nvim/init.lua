@@ -14,8 +14,11 @@ vim.opt.conceallevel = 2
 -- Set Keymaps
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("i", "qq", "<ESC>")
+vim.keymap.set("v", "qq", "<ESC>")
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>w", ":w<CR>")
+vim.keymap.set("n", "<C-c>", '"+y')
+vim.keymap.set("n", "<C-a>", "ggVG")
 vim.keymap.set("n", "<leader>cs", function()
 	require("user.additional-schemas").init()
 end, { desc = "Choose YAML schema" })
