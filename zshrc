@@ -29,6 +29,7 @@ alias e="exit"
 alias k="kubectl"
 alias hl="cd ~/super-homelab"
 alias kdr="k apply --dry-run=client -f ."
+alias img="kitty +kitten icat"
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"

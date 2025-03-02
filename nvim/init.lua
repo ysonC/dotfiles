@@ -18,6 +18,7 @@ vim.keymap.set("v", "qq", "<ESC>")
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>w", ":w<CR>")
 vim.keymap.set("n", "<C-c>", 'ggVG"+y')
+vim.keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear highlights" })
 vim.keymap.set("n", "<leader>cs", function()
 	require("user.additional-schemas").init()
 end, { desc = "Choose YAML schema" })
@@ -50,4 +51,8 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+	change_detection = {
+		notify = false,
+	},
+})

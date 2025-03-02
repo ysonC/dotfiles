@@ -19,6 +19,7 @@ echo "Using dotfiles from: $SCRIPT_DIR"
 echo "Backing up existing dotfiles (if any)..."
 [ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.backup
 [ -d ~/.config/nvim ] && mv ~/.config/nvim ~/.config/nvim.backup
+[ -d ~/.config/kitty ] && mv ~/.config/kitty ~/.config/kitty.backup
 
 # --- Step 1: Detect OS ---
 OS_TYPE=$(uname -s)
@@ -93,7 +94,10 @@ fi
 mkdir -p "$HOME/.tmux/plugins"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# --- Step 7: Create Symlinks for Dotfiles ---
+# --- Step 7: Install Kitty Terminal ---
+mkdir -p "$HOME/.config/kitty"
+
+# --- Step 8: Create Symlinks for Dotfiles ---
 echo "Creating symlinks for dotfiles..."
 
 # Create symlink for the Zsh configuration
@@ -105,6 +109,9 @@ ln -sf "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
 
 # Create symlink for the Tmux configuration
 ln -sf "$SCRIPT_DIR/tmux.conf" "$HOME/.tmux.conf"
+
+# Create symlink for the Kitty configuration
+ln -sf "$SCRIPT_DIR/kitty" "$HOME/.config/kitty"
 
 echo "Symlinks created for Zsh and Neovim and Tmux!"
 
