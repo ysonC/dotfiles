@@ -20,11 +20,13 @@ setopt HIST_VERIFY
 # Aliases
 alias bat="batcat"
 alias n="nvim"
-alias la="ls -la --color=auto"
-alias ls="ls --color=auto"
 alias c="clear"
 alias lg="lazygit"
 alias e="exit"
+alias ls="eza --long --no-time --no-user --no-permissions  --icons=always --group-directories-first"
+alias la="eza --long --icons=always --group-directories-first"
+alias t="tmux"
+
 # Alias for kubectl
 alias k="kubectl"
 alias hl="cd ~/super-homelab"
