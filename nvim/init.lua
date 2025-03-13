@@ -26,6 +26,11 @@ vim.keymap.set("n", "<leader>cs", function()
 end, { desc = "Choose YAML schema" })
 vim.keymap.set("n", "<C-n>", "<cmd>Neotree toggle<CR>", { silent = true })
 
+-- Set tab Keymaps
+vim.keymap.set("n", "<TAB>", "<cmd>tabn<CR>", { desc = "Go to next tab" })
+vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight yanked text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
