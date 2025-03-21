@@ -34,6 +34,12 @@ return {
 
             vim.keymap.set("n", "<leader>ha", mark.add_file, { desc = "Harpoon: Add file" })
             vim.keymap.set("n", "<leader>hm", ui.toggle_quick_menu, { desc = "Harpoon: Toggle quick menu" })
+            vim.keymap.set(
+                "n",
+                "<leader>hh",
+                "<cmd>Telescope harpoon marks<CR>",
+                { desc = "Harpoon: Toggle quick menu" }
+            )
             vim.keymap.set("n", "<leader>1", function()
                 ui.nav_file(1)
             end, { desc = "Harpoon: File 1" })
