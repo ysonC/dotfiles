@@ -23,8 +23,8 @@ return {
 				completion = { nvim_cmp = true },
 				note_frontmatter_func = function(note)
 					return {
-						tags = note.tags or {},
-						creation_date = os.date("%Y-%m-%d"),
+						-- tags = note.tags or {},
+						-- creation_date = os.date("%Y-%m-%d"),
 					}
 				end,
 			})
