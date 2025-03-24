@@ -13,9 +13,6 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.scrolloff = 10
 vim.opt.conceallevel = 2
 
--- Set Keymaps
-require("user.keymap")
-
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight yanked text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
@@ -49,3 +46,6 @@ require("lazy").setup("plugins", {
 		notify = false,
 	},
 })
+
+-- Set Keymaps
+require("user.keymap")
