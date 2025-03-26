@@ -1,33 +1,29 @@
 return {
 	"epwalsh/obsidian.nvim",
-	lazy = true, -- Load only when needed
-	event = { "BufReadPre", "BufNewFile" }, -- Load when opening Markdown files
-	config = function()
-		-- Function to detect if we are inside an Obsidian vault
-		local function is_obsidian_vault()
-			local cwd = vim.fn.expand("%:p:h") -- Get current file directory
-			while cwd ~= "/" do
-				if vim.fn.isdirectory(cwd .. "/.obsidian") == 1 then
-					return cwd -- Found vault, return path
-				end
-				cwd = vim.fn.fnamemodify(cwd, ":h") -- Go one level up
-			end
-			return nil
-		end
-
-		-- Check if we are in a vault
-		local vault_path = is_obsidian_vault()
-		if vault_path then
-			require("obsidian").setup({
-				dir = vault_path, -- Set detected vault as working directory
-				completion = { nvim_cmp = true },
-				note_frontmatter_func = function(note)
-					return {
-						-- tags = note.tags or {},
-						-- creation_date = os.date("%Y-%m-%d"),
-					}
+	version = "*", -- recommended, use latest release instead of latest commit
+	lazy = true,
+	ft = "markdown",
+	-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+	-- event = {
+	--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+	--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
+	--   -- refer to `:h file-pattern` for more examples
+	--   "BufReadPre path/to/my-vault/*.md",
+	--   "BufNewFile path/to/my-vault/*.md",
+	-- },
+	dependencies = {
+		-- Required.
+		"nvim-lua/plenary.nvim",
+	},
+	opts = {
+		workspaces = {
+			{
+				name = "current_buffer_parent",
+				path = function()
+					return vim.fn.expand("%:p:h")
 				end,
-			})
-		end
-	end,
+			},
+		},
+		disable_frontmatter = true,
+	},
 }
