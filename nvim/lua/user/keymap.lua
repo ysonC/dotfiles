@@ -22,6 +22,7 @@ map("n", "K", vim.lsp.buf.hover, {})
 map("n", "gd", vim.lsp.buf.definition, {})
 map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 map("n", "<leader>er", vim.diagnostic.goto_next, {})
+map("n", "<leader>fa", vim.lsp.buf.references, {})
 
 -- None-ls
 map("n", "<leader>ff", vim.lsp.buf.format, {})
