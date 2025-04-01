@@ -2,8 +2,9 @@ local map = vim.keymap.set
 
 -- Basic
 map("n", "<leader>q", ":q<CR>")
-map("i", "<leader><BS>", "<ESC>")
-map("v", "<leader><BS>", "<ESC>")
+map("i", "qq", "<ESC>")
+map("v", "qq", "<ESC>")
+
 map("n", "<leader>y", '"+y')
 map("n", "<leader>w", ":w<CR>")
 map("n", "<C-c>", 'ggVG"+y')
