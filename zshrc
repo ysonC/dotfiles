@@ -27,6 +27,7 @@ alias e="exit"
 alias ls="eza --long --no-time --no-user --no-permissions  --icons=always --group-directories-first"
 alias la="eza --long --icons=always --group-directories-first"
 alias t="tmux"
+alias upgrade="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
 
 # Alias for kubectl
 alias k="kubectl"
@@ -61,7 +62,3 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
-# Load Neofetch
-# neofetch
-# Test git push
-#
