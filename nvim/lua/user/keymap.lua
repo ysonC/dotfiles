@@ -23,7 +23,10 @@ map("n", "<leader>r", vim.lsp.buf.rename, {})
 map("n", "K", vim.lsp.buf.hover, {})
 map("n", "gd", vim.lsp.buf.definition, {})
 map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
-map("n", "<leader>er", vim.diagnostic.goto_next, {})
+-- map("n", "<leader>er", vim.diagnostic.goto_next, {})
+map("n", "<leader>er", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Jump to next diagnostic with floating window" })
 map("n", "<leader>fa", vim.lsp.buf.references, {})
 
 -- None-ls
