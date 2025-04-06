@@ -3,6 +3,7 @@ export PATH="$PATH:/opt/nvim/nvim-linux-arm64/bin/"
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$PATH:/snap/bin"
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/yson/anaconda3/bin
 fpath+=($HOME/.zsh/pure)
 
 # History
@@ -61,4 +62,20 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/yson/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/yson/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/yson/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/yson/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
