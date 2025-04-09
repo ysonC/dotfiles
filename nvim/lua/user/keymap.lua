@@ -10,6 +10,7 @@ map("n", "_", "<C-u>zz")
 map("n", "<leader>y", '"+y')
 map("n", "<leader>w", ":w<CR>")
 map("n", "<C-c>", 'ggVG"+y')
+map("n", "<leader>pp", "yyp")
 map("n", "<leader>nh", ":nohl<CR>", { desc = "Clear highlights" })
 map("n", "<C-n>", "<cmd>Neotree toggle<CR>", { silent = true })
 map("n", "<A-n>", "<cmd>Neotree left<CR>", { silent = true })
@@ -26,7 +27,6 @@ map("n", "K", vim.lsp.buf.hover, {})
 map("n", "gd", vim.lsp.buf.definition, {})
 map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 map("n", "er", vim.diagnostic.goto_next, {})
-map("n", "<leader>fa", vim.lsp.buf.references, {})
 
 -- None-ls
 map("n", "<leader>ff", vim.lsp.buf.format, {})
@@ -34,13 +34,18 @@ map("n", "<leader>ff", vim.lsp.buf.format, {})
 -- Telescope
 local telescope = require("telescope.builtin")
 map("n", "<C-p>", telescope.find_files, {})
+map("n", "<A-p>", function()
+	telescope.find_files({
+		hidden = true,
+		no_ignore = true,
+		no_ignore_parent = true,
+	})
+end, {})
 map("n", "<leader>fg", telescope.live_grep, {})
-map("n", "<leader>ds", telescope.lsp_document_symbols, {})
-
--- Tab
--- map("n", "<TAB>", "<cmd>tabn<CR>", { desc = "Go to next tab" })
--- map("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
--- map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
+map("n", "<leader>fs", telescope.lsp_document_symbols, {})
+map("n", "<leader>fa", telescope.lsp_references, {})
+map("n", "<leader>fe", telescope.diagnostics, {})
+map("n", "<leader>git", telescope.git_status, {})
 
 -- Harpoon
 local harpoon = require("harpoon")
