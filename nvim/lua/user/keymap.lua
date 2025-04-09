@@ -4,6 +4,8 @@ local map = vim.keymap.set
 map("n", "<leader>q", ":q<CR>")
 map("i", "qq", "<ESC>")
 map("v", "qq", "<ESC>")
+map("n", "+", "<C-d>zz")
+map("n", "_", "<C-u>zz")
 
 map("n", "<leader>y", '"+y')
 map("n", "<leader>w", ":w<CR>")
@@ -17,7 +19,7 @@ map("n", "<leader>o", "o<Esc>")
 
 -- LSP
 map("n", "<leader>cs", function()
-    require("user.additional-schemas").init()
+	require("user.additional-schemas").init()
 end, { desc = "Choose YAML schema" })
 map("n", "<leader>r", vim.lsp.buf.rename, {})
 map("n", "K", vim.lsp.buf.hover, {})
@@ -30,9 +32,10 @@ map("n", "<leader>fa", vim.lsp.buf.references, {})
 map("n", "<leader>ff", vim.lsp.buf.format, {})
 
 -- Telescope
-local builtin = require("telescope.builtin")
-map("n", "<C-p>", builtin.find_files, {})
-map("n", "<leader>fg", builtin.live_grep, {})
+local telescope = require("telescope.builtin")
+map("n", "<C-p>", telescope.find_files, {})
+map("n", "<leader>fg", telescope.live_grep, {})
+map("n", "<leader>ds", telescope.lsp_document_symbols, {})
 
 -- Tab
 -- map("n", "<TAB>", "<cmd>tabn<CR>", { desc = "Go to next tab" })
@@ -41,17 +44,17 @@ map("n", "<leader>fg", builtin.live_grep, {})
 
 -- Harpoon
 local harpoon = require("harpoon")
-vim.keymap.set("n", "<leader>a", function()
-    harpoon:list():add()
-    vim.api.nvim_exec_autocmds("User", { pattern = "HarpoonChanged" })
+map("n", "<leader>a", function()
+	harpoon:list():add()
+	vim.api.nvim_exec_autocmds("User", { pattern = "HarpoonChanged" })
 end, { desc = "Harpoon: Add file" })
-vim.keymap.set("n", "<leader>m", function()
-    harpoon.ui:toggle_quick_menu(harpoon:list())
+map("n", "<leader>m", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
 for i = 1, 5 do
-    vim.keymap.set("n", "<leader>" .. i, function()
-        harpoon:list():select(i)
-    end, { desc = "Harpoon: Go to file " .. i })
+	map("n", "<leader>" .. i, function()
+		harpoon:list():select(i)
+	end, { desc = "Harpoon: Go to file " .. i })
 end
 
 -- Undotree
