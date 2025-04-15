@@ -20,7 +20,7 @@ map("n", "<leader>o", "o<Esc>")
 
 -- LSP
 map("n", "<leader>cs", function()
-	require("user.additional-schemas").init()
+    require("user.additional-schemas").init()
 end, { desc = "Choose YAML schema" })
 map("n", "<leader>r", vim.lsp.buf.rename, {})
 map("n", "K", vim.lsp.buf.hover, {})
@@ -35,11 +35,11 @@ map("n", "<leader>ff", vim.lsp.buf.format, {})
 local telescope = require("telescope.builtin")
 map("n", "<C-p>", telescope.find_files, {})
 map("n", "<A-p>", function()
-	telescope.find_files({
-		hidden = true,
-		no_ignore = true,
-		no_ignore_parent = true,
-	})
+    telescope.find_files({
+        hidden = true,
+        no_ignore = true,
+        no_ignore_parent = true,
+    })
 end, {})
 map("n", "<leader>fg", telescope.live_grep, {})
 map("n", "<leader>fs", telescope.lsp_document_symbols, {})
@@ -50,16 +50,16 @@ map("n", "<leader>git", telescope.git_status, {})
 -- Harpoon
 local harpoon = require("harpoon")
 map("n", "<leader>a", function()
-	harpoon:list():add()
-	vim.api.nvim_exec_autocmds("User", { pattern = "HarpoonChanged" })
+    harpoon:list():add()
+    vim.api.nvim_exec_autocmds("User", { pattern = "HarpoonChanged" })
 end, { desc = "Harpoon: Add file" })
 map("n", "<leader>m", function()
-	harpoon.ui:toggle_quick_menu(harpoon:list())
+    harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
 for i = 1, 5 do
-	map("n", "<leader>" .. i, function()
-		harpoon:list():select(i)
-	end, { desc = "Harpoon: Go to file " .. i })
+    map("n", "<leader>" .. i, function()
+        harpoon:list():select(i)
+    end, { desc = "Harpoon: Go to file " .. i })
 end
 
 -- Undotree

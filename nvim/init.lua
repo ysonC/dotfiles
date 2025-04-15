@@ -63,5 +63,15 @@ require("lazy").setup("plugins", {
     },
 })
 
+vim.api.nvim_create_autocmd("User", {
+    pattern = "VeryLazy",
+    callback = function()
+        vim.notify("✅ Neovim fully loaded!", 2, {
+            title = "Startup",
+            timeout = 100,
+        })
+    end,
+})
+
 -- Set Keymaps
 require("user.keymap")
