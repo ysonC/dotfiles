@@ -29,6 +29,7 @@ alias ls="eza --long --no-time --no-user --no-permissions  --icons=always --grou
 alias la="eza --long --icons=always --group-directories-first"
 alias t="tmux"
 alias upgrade="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
+alias s="kitten ssh"
 
 # Alias for kubectl
 alias k="kubectl"
