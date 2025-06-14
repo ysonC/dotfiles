@@ -37,6 +37,7 @@ alias gogowindows=" sudo efibootmgr -n 0000 && sudo reboot"
 alias k="kubectl"
 alias hl="cd ~/super-homelab"
 alias kdr="k apply --dry-run=client -f ."
+alias kcheck="kubectl get --raw /healthz"
 alias img="kitty +kitten icat"
 
 # Load NVM
