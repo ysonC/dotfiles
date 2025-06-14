@@ -33,12 +33,12 @@ if [ "$OS_TYPE" == "Darwin" ]; then
   brew update
   
   # Install zsh, fd, and node
-  brew install zsh fd node tmux ripgrep neofetch
+  brew install zsh fd node tmux ripgrep stow
 elif [ "$OS_TYPE" == "Linux" ]; then
   echo "Running on Linux. Using apt to install packages..."
   sudo apt update
   # On Debian/Ubuntu-based systems, 'fd' is provided by fd-find.
-  sudo apt install -y zsh fd-find nodejs npm xclip tmux ripgrep neofetch
+  sudo apt install -y zsh fd-find nodejs npm xclip tmux ripgrep stow
   # On some Linux distributions the fd binary is installed as 'fdfind'
   # You may want to create a symlink to 'fd' for consistency:
   if ! command -v fd >/dev/null 2>&1 && command -v fdfind >/dev/null 2>&1; then
@@ -100,18 +100,12 @@ mkdir -p "$HOME/.config/kitty"
 # --- Step 8: Create Symlinks for Dotfiles ---
 echo "Creating symlinks for dotfiles..."
 
-# Create symlink for the Zsh configuration
-ln -sf "$SCRIPT_DIR/zshrc" "$HOME/.zshrc"
+cd "$SCRIPT_DIR"
 
-# Create symlink for the Neovim configuration
-mkdir -p "$HOME/.config"
-ln -sf "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
-
-# Create symlink for the Tmux configuration
-ln -sf "$SCRIPT_DIR/tmux.conf" "$HOME/.tmux.conf"
-
-# Create symlink for the Kitty configuration
-ln -sf "$SCRIPT_DIR/kitty" "$HOME/.config/kitty"
+stow zshrc       # will symlink .zshrc
+stow tmux.conf   # will symlink .tmux.conf
+stow nvim        # will symlink ~/.config/nvim
+stow kitty       # will symlink ~/.config/kitty
 
 echo "Symlinks created for Zsh and Neovim and Tmux!"
 
