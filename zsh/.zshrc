@@ -83,3 +83,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
