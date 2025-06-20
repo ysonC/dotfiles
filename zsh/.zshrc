@@ -19,6 +19,9 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_VERIFY
 
+# kitty ssh fix
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh" 
+
 # Aliases
 alias bat="batcat"
 alias n="nvim"
