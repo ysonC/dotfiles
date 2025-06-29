@@ -15,6 +15,7 @@ return {
 					"gopls", --Go
 					"yamlls", --YAML
 					"ts_ls", --TypeScript
+					"clangd", --C
 				},
 			})
 		end,
@@ -106,6 +107,21 @@ return {
 						staticcheck = true,
 					},
 				},
+			})
+
+			-- C / C++ Language Server
+			lspconfig.clangd.setup({
+				capabilities = capabilities,
+				cmd = { "clangd" }, -- optional if clangd is in PATH
+				filetypes = { "c", "cpp", "objc", "objcpp" },
+				root_dir = lspconfig.util.root_pattern(
+					".clangd",
+					".clang-tidy",
+					".clang-format",
+					"compile_commands.json",
+					"compile_flags.txt",
+					".git"
+				),
 			})
 		end,
 	},
