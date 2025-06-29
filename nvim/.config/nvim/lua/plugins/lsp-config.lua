@@ -91,23 +91,26 @@ return {
 			})
 
 			-- gopls
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				cmd = { "gopls" },
-				filetypes = { "go", "gomod", "gowork", "gotmpl" },
-				root_dir = lspconfig.util.root_pattern("go.mod", ".git", "go.work"),
-				settings = {
-					gopls = {
-						completeUnimported = true,
-						usePlaceholders = true,
-						analyses = {
-							unusedparams = true,
+			-- check for go bin first
+			if vim.fn.executable("go") == 1 then
+				lspconfig.gopls.setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+					cmd = { "gopls" },
+					filetypes = { "go", "gomod", "gowork", "gotmpl" },
+					root_dir = lspconfig.util.root_pattern("go.mod", ".git", "go.work"),
+					settings = {
+						gopls = {
+							completeUnimported = true,
+							usePlaceholders = true,
+							analyses = {
+								unusedparams = true,
+							},
+							staticcheck = true,
 						},
-						staticcheck = true,
 					},
-				},
-			})
+				})
+			end
 
 			-- C / C++ Language Server
 			lspconfig.clangd.setup({
