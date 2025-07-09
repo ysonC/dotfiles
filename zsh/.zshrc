@@ -23,7 +23,7 @@ setopt HIST_VERIFY
 [[ "$TERM" == "xterm-kitty" ]] && alias ssh="TERM=xterm-256color ssh" 
 
 # Aliases
-alias bat="batcat"
+# alias bat="batcat"
 alias n="nvim"
 alias c="clear"
 alias lg="lazygit"
