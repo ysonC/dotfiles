@@ -38,8 +38,9 @@ window#waybar {
 #pulseaudio,
 #window,
 #custom-power,
+#image,
 #workspaces {
-  padding: 0 5px;
+  padding: 6 5px;
   margin: 0 5px;
 }
 
