@@ -2,17 +2,10 @@
   "position": "top", // Waybar position (top|bottom|left|right)
   "height": 30, // Waybar height (to be removed for auto height)
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
-  "modules-right": [
-    "pulseaudio",
-    "cpu",
-    "memory",
-    "network",
-    "temperature",
-    "custom/power",
-  ],
+  "modules-center": ["clock", "temperature"],
+  "modules-right": ["pulseaudio", "cpu", "memory", "network", "custom/power"],
   "clock": {
-    "format": "{:%Y-%m-%d  %I:%M}",
+    "format": "{:%m-%d  %I:%M}",
   },
   "cpu": {
     "format": "[CPU {usage}%]",
@@ -34,7 +27,7 @@
   },
   "pulseaudio": {
     "scroll-step": 1, // Volume step with mouse wheel
-    "format": "{volume}% ", // Default output format
+    "format": "   {volume}%", // Default output format
     "format-muted": "", // Muted output
     "format-bluetooth": "{volume}% ", // Bluetooth output
     "format-bluetooth-muted": " ", // Muted Bluetooth
