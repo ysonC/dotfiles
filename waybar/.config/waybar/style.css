@@ -1,7 +1,7 @@
 * {
   border: none;
   border-radius: 10px;
-  font-family: "Roboto Mono Medium", Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans Medium", Helvetica, Arial, sans-serif;
   font-size: 18px;
   min-height: 0;
 }
@@ -40,7 +40,7 @@ window#waybar {
 #custom-power,
 #image,
 #workspaces {
-  padding: 6 5px;
+  padding: 3 5px;
   margin: 0 5px;
 }
 
