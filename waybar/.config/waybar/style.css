@@ -1,7 +1,8 @@
 * {
   border: none;
-  border-radius: 10px;
-  font-family: "Noto Sans Medium", Helvetica, Arial, sans-serif;
+  border-radius: 0px;
+  /* font-family: "Noto Sans Medium", Helvetica, Arial, sans-serif; */
+  font-family: "CaskaydiaCove Nerd Font", monospace;
   font-size: 18px;
   min-height: 0;
 }
@@ -37,11 +38,20 @@ window#waybar {
 #network,
 #pulseaudio,
 #window,
-#custom-power,
 #image,
 #workspaces {
-  padding: 3 5px;
+  /* padding: 3 10px; */
   margin: 0 5px;
+}
+
+#custom-quit,
+#custom-lock,
+#custom-reboot {
+  padding: 0 10px;
+}
+
+#custom-power {
+  padding: 0 15px;
 }
 
 .modules-left > widget:first-child > #workspaces {
@@ -62,9 +72,6 @@ window#waybar {
   color: #ffffff;
 }
 
-/* #custom-power { */
-/* } */
-
 #network.disconnected {
   /* background-color: #f53c3c; */
   color: #f53c3c;
@@ -77,5 +84,10 @@ window#waybar {
 
 #custom-power:hover {
   /* background-color: #333333; */
+  background-color: #f53c3c;
+}
+
+#custom-quit:hover,
+#custom-reboot:hover {
   background-color: #f53c3c;
 }

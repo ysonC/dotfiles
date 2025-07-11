@@ -8,7 +8,7 @@
     "cpu",
     "memory",
     "network",
-    "custom/power",
+    // "custom/power",
     "group/group-power",
   ],
   "image#logo": {
@@ -18,20 +18,20 @@
   },
 
   "clock": {
-    "format": "{:%m-%d  %I:%M}",
+    "format": "{:%m-%d %I:%M}",
   },
 
   "cpu": {
-    "format": "[CPU {usage}%]",
-    "tooltip": false,
+    "format": " {usage}%",
   },
 
   "memory": {
-    "format": "[RAM {}%]",
+    "format": " {}%",
   },
 
   "temperature": {
-    "format": "{temperatureC}°C",
+    // "format": "{temperatureC}°C󰔄",
+    "format": "{temperatureC}󰔄",
   },
 
   "network": {
@@ -41,11 +41,12 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
   },
 
   "pulseaudio": {
     "scroll-step": 1, // Volume step with mouse wheel
-    "format": "   {volume}%", // Default output format
+    "format": " {volume}%", // Default output format
     "format-muted": "", // Muted output
     "format-bluetooth": "{volume}% ", // Bluetooth output
     "format-bluetooth-muted": " ", // Muted Bluetooth
@@ -55,13 +56,6 @@
     "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", // Right click to mute/unmute
     "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
     "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
-  },
-
-  "custom/power": {
-    "format": "⏻",
-    "tooltip": false,
-    "on-click": "~/.config/waybar/scripts/power-menu.sh",
-    "interval": 3600,
   },
 
   "group/group-power": {
@@ -74,19 +68,14 @@
     "modules": [
       "custom/power", // First element is the "group leader" and won't ever be hidden
       "custom/quit",
-      "custom/lock",
       "custom/reboot",
     ],
   },
+
   "custom/quit": {
     "format": "󰗼",
     "tooltip": false,
     "on-click": "hyprctl dispatch exit",
-  },
-  "custom/lock": {
-    "format": "󰍁",
-    "tooltip": false,
-    "on-click": "swaylock",
   },
   "custom/reboot": {
     "format": "󰜉",
