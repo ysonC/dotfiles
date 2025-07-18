@@ -10,12 +10,13 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    "lua_ls",  --Lua
-                    "pyright", --Python
+                    "lua_ls",        --Lua
+                    "pyright",       --Python
                     vim.fn.executable("go") == 1 and "gopls" or nil,
-                    "yamlls",  --YAML
-                    "ts_ls",   --TypeScript
-                    "clangd",  --C
+                    "yamlls",        --YAML
+                    "ts_ls",         --TypeScript
+                    "clangd",        --C
+                    "rust_analyzer", --Rust
                 },
             })
         end,
@@ -125,6 +126,19 @@ return {
                     "compile_flags.txt",
                     ".git"
                 ),
+            })
+
+            -- Rust setup
+            lspconfig.rust_analyzer.setup({
+                capabilities = capabilities,
+                filetypes = { "rust" },
+                root_dir = lspconfig.util.root_pattern("Cargo.toml", "rust-project.json", ".git"),
+                settings = {
+                    ["rust-analyzer"] = {
+                        cargo = { allFeatures = true },
+                        checkOnSave = { command = "clippy" },
+                    },
+                },
             })
         end,
     },
