@@ -69,6 +69,7 @@
 
   "cpu": {
     "format": " {usage}%",
+    "on-click": "kitty -e btop",
   },
 
   "memory": {

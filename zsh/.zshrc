@@ -90,3 +90,5 @@ unset __conda_setup
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
