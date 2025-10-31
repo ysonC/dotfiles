@@ -1,50 +1,40 @@
 # My Dotfiles
 
-This repository contains my configuration files (dotfiles) for various tools such as Zsh (with [Pure prompt](https://github.com/sindresorhus/pure)) and Neovim. I use Git for version control and the symlink method to deploy these dotfiles to their proper locations on my system.
+This repository contains my personal configuration files (dotfiles) for a customized Linux desktop environment centered around the Hyprland Wayland compositor.
 
 ## Overview
 
-- **zshrc**: My Zsh configuration file that sets up my shell environment and loads Pure prompt.
-- **pure/**: The Pure prompt files (or a symlink/installation of Pure prompt) used by my Zsh configuration.
-- **nvim/**: My Neovim configuration directory.
-- **install.sh**: A cross-platform (macOS and Linux) bootstrap script that:
-  - Backs up your existing dotfiles
-  - Installs required packages
-  - Configures Zsh with plugins (including Pure prompt)
-  - Configures Neovim config
-  - **Creates symlinks using relative paths** (i.e. it uses the directory where the script resides as the source)
+This setup is tailored for a development workflow, with a focus on aesthetics and productivity. It provides a consistent and integrated experience across various command-line and graphical tools.
 
-## Prerequisites
+## Core Components
 
-- **Git**: Ensure Git is installed on your system.
-- **Zsh**: This repository includes my Zsh configuration along with Pure prompt.
-- **Neovim**: My Neovim settings are included under the `nvim/` directory.
-- A Unix-like operating system (macOS, Linux, etc.)
-- [Homebrew](https://brew.sh/) (for macOS) or `apt` (for Debian/Ubuntu Linux) for package installation
+This collection of dotfiles includes configurations for the following core components:
 
-## Installation
+-   **Window Manager: Hyprland**
+    The configuration in `hypr/hyprland.conf` defines the behavior of the window manager, including keybindings, startup applications, window rules, and animations. It is set up to automatically launch Firefox, Kitty, Spotify, and TickTick on specific workspaces.
 
-### 1. Clone the Repository
+-   **Status Bar: Waybar**
+    The `waybar/` directory contains the configuration and styling for the status bar. It is configured to display Hyprland workspaces (with custom icons for Spotify and TickTick), system information like CPU and memory usage, and a clock.
 
-Clone this repository to your home directory (or any preferred location):
+-   **Terminal: Kitty**
+    The `kitty/kitty.conf` file contains settings for the Kitty terminal emulator, including font settings and theme information.
 
-```bash
-git clone git@github.com:yourusername/dotfiles.git ~/dotfiles
-```
+-   **Shell: Zsh**
+    The `.zshrc` file configures the Zsh shell. It uses the "Pure" prompt and is enhanced with plugins such as `zsh-autosuggestions`, `zsh-syntax-highlighting`, `fzf` for fuzzy finding, and `atuin` for shell history.
 
-### 2. Run the script
+-   **Editor: Neovim**
+    The Neovim configuration is located in the `nvim/` directory, with `init.lua` as the entry point. It uses `lazy.nvim` for plugin management and is structured with custom keymaps and a modular plugin system.
 
-```bash
-chmod +x install.sh
-./install.sh
-```
+-   **Terminal Multiplexer: Tmux**
+    The `.tmux.conf` file configures the Tmux terminal multiplexer, defining keybindings, status bar appearance, and plugins managed by `tpm`.
 
-### 3. Tmux: Install Plugin
+-   **Application Launcher: Wofi**
+    The `wofi/` directory contains styling for the Wofi application launcher.
 
-Use Shortcut (Ctr + s + I) to reload and install tmux plugin after lauching a session.
+-   **Installation Script: `install.sh`**
+    This script automates the setup of the dotfiles on a new system. It backs up existing configurations, installs necessary packages for Debian/Ubuntu or macOS, and uses `stow` to create the required symlinks.
 
-```bash
-tmux
-```
+## Custom Scripts
 
+-   **`select_kill_pid.sh`**: A utility script for interactively selecting and killing processes.
 
