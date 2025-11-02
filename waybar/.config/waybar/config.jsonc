@@ -1,14 +1,15 @@
 {
   "position": "top", // Waybar position (top|bottom|left|right)
   "height": 30, // Waybar height (to be removed for auto height)
-  "modules-left": ["image#logo", "hyprland/workspaces"],
-  "modules-center": ["clock", "temperature"],
+  // "modules-left": ["image#logo", "hyprland/workspaces"],
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
   "modules-right": [
     "network",
     "cpu",
     "memory",
+    "temperature",
     "pulseaudio",
-    // "custom/power",
     "group/group-power",
   ],
 
@@ -38,11 +39,12 @@
       "5": [],
     },
   },
-  "image#logo": {
-    "path": "/home/yson/.config/waybar/assets/bun-nobg.png",
-    "size": 34,
-    "tooltip": false,
-  },
+
+  // "image#logo": {
+  //   "path": "/home/yson/.config/waybar/assets/bun-nobg.png",
+  //   "size": 34,
+  //   "tooltip": false,
+  // },
 
   "clock": {
     "format": "{:%m-%d %I:%M}",
@@ -79,8 +81,12 @@
   },
 
   "temperature": {
-    // "format": "{temperatureC}°C󰔄",
-    "format": "{temperatureC}󰔄",
+    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    "warning-threshold": 75,
+    "critical-threshold": 90,
+    "format": "{temperatureC}°C",
+    "tooltip-format": "CPU package: {temperatureC}°C",
+    "interval": 5,
   },
 
   "network": {
