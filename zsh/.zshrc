@@ -92,3 +92,6 @@ unset __conda_setup
 eval "$(atuin init zsh)"
 
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+
+# Created by `pipx` on 2025-11-06 10:30:54
+export PATH="$PATH:/home/yson/.local/bin"
