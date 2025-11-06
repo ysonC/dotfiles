@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pkg=$(paru -Qm | fzf --multi --ansi \
+pkg=$(paru -Qqe | fzf --multi --ansi \
     --preview 'paru -Qi {1} 2>/dev/null || echo "Not installed."' \
     --preview-window=right:60%)
 
