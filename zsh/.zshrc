@@ -91,7 +91,7 @@ unset __conda_setup
 
 . "$HOME/.atuin/bin/env"
 
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
