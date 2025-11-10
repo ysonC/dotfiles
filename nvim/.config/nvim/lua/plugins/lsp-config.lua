@@ -24,26 +24,25 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- Lua
-			lspconfig.lua_ls.setup({
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
+				filetypes = { "lua" },
+				-- give it obvious roots so it attaches anywhere you have .git or .luarc
+				root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
 				settings = {
 					Lua = {
 						runtime = { version = "LuaJIT" },
 						diagnostics = { globals = { "vim" } },
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true),
-							checkThirdParty = false,
-						},
+						workspace = { checkThirdParty = false },
 					},
 				},
 			})
+			vim.lsp.enable("lua_ls")
 
 			-- Python Language Server
-			lspconfig.pyright.setup({
+			vim.lsp.config("pyright", {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
@@ -58,88 +57,50 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable("pyright")
 
 			-- TypeScript
-			lspconfig.ts_ls.setup({
+			vim.lsp.config("ts_ls", {
 				capabilities = capabilities,
-				on_attach = function(client)
-					client.server_capabilities.documentFormatingProvider = false
+				filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+				root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+				on_attach = function(client, bufnr)
+					-- disable built-in formatting if you use prettier/eslint
+					client.server_capabilities.documentFormattingProvider = false
 				end,
 				settings = {
-					javascript = {
-						suggest = {
-							autoImports = true,
-						},
-					},
-					typescript = {
-						suggest = {
-							autoImports = true,
-						},
-					},
+					javascript = { suggest = { autoImports = true } },
+					typescript = { suggest = { autoImports = true } },
 				},
 			})
+			vim.lsp.enable("ts_ls")
 
 			-- YAML
-			lspconfig.yamlls.setup({
+			vim.lsp.config("yamlls", {
 				capabilities = capabilities,
-				settings = {
-					yaml = {
-						validate = true,
-						hover = true,
-						completion = true,
-					},
-				},
+				filetypes = { "yaml", "yml" },
+				root_markers = { ".git" },
+				settings = { yaml = { validate = true, hover = true, completion = true } },
 			})
+			vim.lsp.enable("yamlls")
 
-			-- gopls
-			-- check for go bin first
+			-- Go (requires Go installed and gopls via Mason)
 			if vim.fn.executable("go") == 1 then
-				lspconfig.gopls.setup({
+				vim.lsp.config("gopls", {
 					capabilities = capabilities,
-					on_attach = on_attach,
-					cmd = { "gopls" },
 					filetypes = { "go", "gomod", "gowork", "gotmpl" },
-					root_dir = lspconfig.util.root_pattern("go.mod", ".git", "go.work"),
+					root_markers = { "go.work", "go.mod", ".git" },
 					settings = {
 						gopls = {
 							completeUnimported = true,
 							usePlaceholders = true,
-							analyses = {
-								unusedparams = true,
-							},
+							analyses = { unusedparams = true },
 							staticcheck = true,
 						},
 					},
 				})
+				vim.lsp.enable("gopls")
 			end
-
-			-- C / C++ Language Server
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-				cmd = { "clangd" }, -- optional if clangd is in PATH
-				filetypes = { "c", "cpp", "objc", "objcpp" },
-				root_dir = lspconfig.util.root_pattern(
-					".clangd",
-					".clang-tidy",
-					".clang-format",
-					"compile_commands.json",
-					"compile_flags.txt",
-					".git"
-				),
-			})
-
-			-- Rust setup
-			lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-				filetypes = { "rust" },
-				root_dir = lspconfig.util.root_pattern("Cargo.toml", "rust-project.json", ".git"),
-				settings = {
-					["rust-analyzer"] = {
-						cargo = { allFeatures = true },
-						checkOnSave = true,
-					},
-				},
-			})
 		end,
 	},
 }
