@@ -3,7 +3,7 @@ vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
-vim.cmd("set guicursor=n-v-c-i:block,r:hor20")
+vim.cmd("set guicursor=n-v-c-i:ver25,r:hor20")
 
 vim.g.mapleader = " "
 vim.opt.number = true
