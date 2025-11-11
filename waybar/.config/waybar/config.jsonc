@@ -27,7 +27,6 @@
       "7": "7",
       "8": "8",
       "9": "9",
-      // "active": "󱓻",
       "11": "",
       "12": "✓",
     },
@@ -39,12 +38,6 @@
       "5": [],
     },
   },
-
-  // "image#logo": {
-  //   "path": "/home/yson/.config/waybar/assets/bun-nobg.png",
-  //   "size": 34,
-  //   "tooltip": false,
-  // },
 
   "clock": {
     "format": "{:%m-%d %I:%M}",
@@ -93,7 +86,8 @@
     "tooltip": true,
     "rotate": 0,
     "format-alt": "",
-    "format-ethernet": "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>",
+    // "format-ethernet": "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>",
+    "format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes}",
     "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
     "format-linked": " {ifname} (No IP)",
     "format-disconnected": "Disconnected",
@@ -133,15 +127,23 @@
     "format": "󰗼",
     "tooltip": false,
     "on-click": "hyprctl dispatch exit",
+    "on-scroll-up": "",
+    "on-scroll-down": "",
   },
+
   "custom/reboot": {
     "format": "󰜉",
     "tooltip": false,
     "on-click": "reboot",
+    "on-scroll-up": "",
+    "on-scroll-down": "",
   },
+
   "custom/power": {
     "format": "",
     "tooltip": false,
     "on-click": "shutdown now",
+    "on-scroll-up": "",
+    "on-scroll-down": "",
   },
 }
