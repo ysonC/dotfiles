@@ -8,6 +8,7 @@ modules=(
   "neovim"
   "lazygit"
   "tmux"
+  "eza"
 )
 
 for module in "${modules[@]}"; do

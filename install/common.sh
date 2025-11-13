@@ -7,7 +7,7 @@ APT_UPDATED=false
 PACKAGE_MANAGER=""
 PACKAGE_FLAVOR=""
 CRITICAL_READY=false
-CRITICAL_PACKAGES=(stow git curl tar)
+CRITICAL_PACKAGES=(stow git curl tar wget)
 
 log() {
   printf '[%s] %s\n' "$(basename "$0")" "$*"
