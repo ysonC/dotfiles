@@ -6,7 +6,7 @@ source "$SCRIPT_DIR/common.sh"
 
 log "Installing Zsh and shell tooling"
 
-install_packages zsh git curl stow
+install_packages zsh
 
 ensure_directory "$HOME/.zsh"
 
@@ -33,4 +33,3 @@ if command -v zsh >/dev/null 2>&1; then
 fi
 
 log "Zsh setup complete."
-

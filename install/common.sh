@@ -6,6 +6,8 @@ REPO_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
 APT_UPDATED=false
 PACKAGE_MANAGER=""
 PACKAGE_FLAVOR=""
+CRITICAL_READY=false
+CRITICAL_PACKAGES=(stow git curl tar)
 
 log() {
   printf '[%s] %s\n' "$(basename "$0")" "$*"
@@ -76,15 +78,8 @@ backup_path() {
   fi
 }
 
-ensure_stow() {
-  if ! command_exists stow; then
-    install_packages stow
-  fi
-}
-
 stow_module() {
   local module="$1"
-  ensure_stow
   log "Stowing module: $module"
   stow --dir "$REPO_ROOT" --target "$HOME" --restow "$module"
 }
@@ -140,4 +135,18 @@ detect_package_manager() {
   log "Detected package manager: $PACKAGE_MANAGER ($PACKAGE_FLAVOR)"
 }
 
+install_critical_packages() {
+  if [[ "$CRITICAL_READY" == "true" ]]; then
+    return
+  fi
+
+  if [ ${#CRITICAL_PACKAGES[@]} -gt 0 ]; then
+    log "Installing critical packages: ${CRITICAL_PACKAGES[*]}"
+    install_packages "${CRITICAL_PACKAGES[@]}"
+  fi
+
+  CRITICAL_READY=true
+}
+
 detect_package_manager
+install_critical_packages

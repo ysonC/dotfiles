@@ -7,9 +7,9 @@ source "$SCRIPT_DIR/common.sh"
 log "Installing Neovim and related tooling"
 
 if using_brew || using_pacman; then
-  install_packages neovim ripgrep fd stow
+  install_packages neovim ripgrep fd
 else
-  install_packages neovim ripgrep fd-find stow
+  install_packages neovim ripgrep fd-find
   ensure_fd_alias
 fi
 
