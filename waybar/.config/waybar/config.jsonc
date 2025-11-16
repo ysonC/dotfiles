@@ -85,11 +85,10 @@
   "network": {
     "tooltip": true,
     "rotate": 0,
-    "format-alt": "",
-    // "format-ethernet": "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>",
-    "format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes}",
-    "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-    "format-linked": " {ifname} (No IP)",
+    "format-ethernet": " ",
+    "format-alt": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "format-linked": "{ifname} (No IP)",
     "format-disconnected": "Disconnected",
     "interval": 2,
   },
@@ -98,9 +97,9 @@
     "tooltip-format-disconnected": "Disconnected",
     "scroll-step": 1, // Volume step with mouse wheel
     "format": " {volume}%", // Default output format
-    "format-muted": "", // Muted output
+    "format-muted": "󰝟", // Muted output
     "format-bluetooth": "{volume}% ", // Bluetooth output
-    "format-bluetooth-muted": " ", // Muted Bluetooth
+    "format-bluetooth-muted": "󰝟 ", // Muted Bluetooth
     "format-source": "{volume}% ", // Microphone
     "format-source-muted": "", // Muted microphone
     "on-click": "pavucontrol", // Launch audio control GUI
