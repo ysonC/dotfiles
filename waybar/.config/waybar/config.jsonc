@@ -98,7 +98,7 @@
     "scroll-step": 1, // Volume step with mouse wheel
     "format": " {volume}%", // Default output format
     "format-muted": "󰝟", // Muted output
-    "format-bluetooth": "{volume}% ", // Bluetooth output
+    "format-bluetooth": " {volume}%", // Bluetooth output
     "format-bluetooth-muted": "󰝟 ", // Muted Bluetooth
     "format-source": "{volume}% ", // Microphone
     "format-source-muted": "", // Muted microphone
