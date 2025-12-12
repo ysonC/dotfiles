@@ -37,6 +37,8 @@ alias chinese="fcitx5-configtool"
 alias gogowindows=" sudo efibootmgr -n 0000 && sudo reboot"
 alias installstuff="sh $HOME/.scripts/fzf_install_pkg.sh"
 alias removestuff="sh $HOME/.scripts/fzf_remove_pkg.sh"
+alias kcp="kitten clipboard"
+alias kimg="kitten icat"
 
 # Alias for kubectl
 alias k="kubectl"
