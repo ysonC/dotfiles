@@ -79,9 +79,13 @@ esac
 
 # mkdir -p -- "$dest"
 
-echo "Downloading to temp: $temp_dir"
+echo ""
+echo "==> Downloading to temp: $temp_dir"
+echo ""
 download "$url" "$temp_dir"
 
-echo "Moving into: $dest"
+echo ""
+echo "==> Moving into: $dest"
+echo ""
 move_downloaded "$temp_dir" "$dest"
 
