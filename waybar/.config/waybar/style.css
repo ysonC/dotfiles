@@ -52,7 +52,9 @@ window#waybar {
 }
 
 #custom-power {
-  padding: 0 15px;
+  padding-left: 15px;
+  padding-right: 18px;
+  border-radius: 6px;
 }
 
 .modules-left > widget:first-child > #workspaces {

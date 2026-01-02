@@ -10,8 +10,9 @@
     "memory",
     "temperature",
     "pulseaudio",
-    "group/group-power",
+    "custom/power",
   ],
+  // "group/group-power",
 
   "hyprland/workspaces": {
     "on-click": "activate",
