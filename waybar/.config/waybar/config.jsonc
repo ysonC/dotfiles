@@ -41,7 +41,8 @@
   },
 
   "clock": {
-    "format": "{:%m-%d %I:%M}",
+    // "format": "{:%m-%d %I:%M}",
+    "format": "{:%m-%d %R}",
     "format-alt": "{:%A, %B %d, %Y (%R)}",
     "tooltip-format": "<tt><big>{calendar}</big></tt>",
     "calendar": {
@@ -75,8 +76,10 @@
   },
 
   "temperature": {
-    // "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
-    "thermal-zone": 3,
+    // "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    // "thermal-zone": 3,
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+    "input-filename": "temp1_input",
     "warning-threshold": 75,
     "critical-threshold": 90,
     "format": "{temperatureC}°C",
