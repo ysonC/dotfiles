@@ -90,8 +90,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
-. "$HOME/.atuin/bin/env"
+if [[ "$OSTYPE" != "darwin"* ]]; then
+  . "$HOME/.atuin/bin/env"
+fi
 
 eval "$(atuin init zsh --disable-up-arrow)"
 
