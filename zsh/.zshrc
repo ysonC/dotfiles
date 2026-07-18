@@ -47,6 +47,12 @@ alias kdr="k apply --dry-run=client -f ."
 alias kcheck="kubectl get --raw /healthz"
 alias img="kitty +kitten icat"
 
+# Custom function
+mkcd() {
+    mkdir -p "$1"
+    cd "$1"
+}
+
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load NVM
