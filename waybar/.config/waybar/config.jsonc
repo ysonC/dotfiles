@@ -3,7 +3,7 @@
   "height": 30, // Waybar height (to be removed for auto height)
   // "modules-left": ["image#logo", "hyprland/workspaces"],
   "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
+  "modules-center": ["clock", "custom/calendar"],
   "modules-right": [
     "network",
     "cpu",
@@ -149,5 +149,11 @@
     "on-click": "shutdown now",
     "on-scroll-up": "",
     "on-scroll-down": "",
+  },
+
+  "custom/calendar": {
+    "format": " 󰃭 ",
+    "on-click": "lvsk-calendar-launcher",
+    "tooltip-format": "Click to open calendar",
   },
 }
