@@ -8,7 +8,7 @@ hl.bind(main_mod .. " + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(main_mod .. " + return", hl.dsp.exec_cmd(programs.terminal))
 hl.bind(main_mod .. " + E", hl.dsp.exec_cmd(programs.file_manager))
 hl.bind(main_mod .. " + space", hl.dsp.exec_cmd(programs.menu))
-hl.bind(main_mod .. " + A", hl.dsp.exec_cmd(programs.browser .. " --new-window \"https://chatgpt.com/\""))
+hl.bind(main_mod .. " + A", hl.dsp.exec_cmd(programs.browser .. ' --new-window "https://chatgpt.com/"'))
 
 -- Session controls
 hl.bind(main_mod .. " + Q", hl.dsp.window.close())
@@ -19,22 +19,25 @@ hl.bind(main_mod .. " + M", hl.dsp.window.fullscreen({ mode = "maximized", actio
 -- Utility helpers
 hl.bind(main_mod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
 hl.bind(main_mod .. " + SHIFT + K", hl.dsp.exec_cmd("$HOME/.scripts/select_kill_pid.sh"))
-hl.bind(main_mod .. " + SHIFT + I", hl.dsp.exec_cmd(programs.terminal .. " --title \"floatterm\" $HOME/.scripts/fzf_install_pkg.sh"))
-hl.bind(main_mod .. " + SHIFT + return", hl.dsp.exec_cmd(programs.terminal .. " --title \"floatterm\""))
+hl.bind(
+	main_mod .. " + SHIFT + I",
+	hl.dsp.exec_cmd(programs.terminal .. ' --title "floatterm" $HOME/.scripts/fzf_install_pkg.sh')
+)
+hl.bind(main_mod .. " + SHIFT + return", hl.dsp.exec_cmd(programs.terminal .. ' --title "floatterm"'))
 hl.bind(main_mod .. " + SHIFT + C", hl.dsp.exec_cmd("vicinae vicinae://launch/clipboard/history"))
 
 -- Focus and window movement
 for key, direction in pairs({ left = "l", right = "r", up = "u", down = "d" }) do
-    hl.bind(main_mod .. " + " .. key, hl.dsp.focus({ direction = direction }))
-    hl.bind(main_mod .. " + SHIFT + " .. key, hl.dsp.window.move({ direction = direction }))
+	hl.bind(main_mod .. " + " .. key, hl.dsp.focus({ direction = direction }))
+	hl.bind(main_mod .. " + SHIFT + " .. key, hl.dsp.window.move({ direction = direction }))
 end
 hl.bind(main_mod .. " + tab", hl.dsp.window.cycle_next())
 
 -- Workspace switching and moving windows
 for workspace = 1, 10 do
-    local key = workspace % 10
-    hl.bind(main_mod .. " + " .. key, hl.dsp.focus({ workspace = workspace }))
-    hl.bind(main_mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = workspace }))
+	local key = workspace % 10
+	hl.bind(main_mod .. " + " .. key, hl.dsp.focus({ workspace = workspace }))
+	hl.bind(main_mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = workspace }))
 end
 hl.bind(main_mod .. " + S", hl.dsp.focus({ workspace = 11 }))
 hl.bind(main_mod .. " + T", hl.dsp.focus({ workspace = 12 }))
