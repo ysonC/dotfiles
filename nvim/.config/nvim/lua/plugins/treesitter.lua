@@ -1,12 +1,32 @@
-return{
-    "nvim-treesitter/nvim-treesitter",
-    build= ":TSUpdate",
-    config = function()
-        local config = require("nvim-treesitter.configs")
-        config.setup({
-            ensure_installed = {"lua", "javascript","python","go","yaml"},
-            highlight = { enable = true },
-            indent = { enable = true }
-        })
-    end
+return {
+	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
+	build = ":TSUpdate",
+
+	config = function()
+		local treesitter = require("nvim-treesitter")
+
+		treesitter.setup()
+
+		treesitter.install({
+			"lua",
+			"javascript",
+			"python",
+			"go",
+			"yaml",
+		})
+
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = {
+				"lua",
+				"javascript",
+				"python",
+				"go",
+				"yaml",
+			},
+			callback = function()
+				vim.treesitter.start()
+			end,
+		})
+	end,
 }
