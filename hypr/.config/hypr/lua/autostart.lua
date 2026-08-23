@@ -8,6 +8,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("fcitx5")
 	hl.exec_cmd("vicinae server")
 
+	-- Scripts
+	hl.exec_cmd("~/.config/hypr/scripts/ari-app-switcher.sh")
 	-- Workspace post launch setup
 	hl.exec_cmd(programs.browser, { workspace = "1 silent" })
 	hl.exec_cmd("spotify", { workspace = "11 silent" })
