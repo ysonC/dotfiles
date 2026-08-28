@@ -14,6 +14,10 @@ socat -U - UNIX-CONNECT:"$SOCKET" | while read -r event; do
             fcitx5-remote -g Ari
             ;;
 
+        openlayer\>\>*vicinae*,*)
+            fcitx5-remote -g Default
+            ;;
+
         activewindow\>\>*)
             fcitx5-remote -g Default
             ;;
