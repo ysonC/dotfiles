@@ -34,14 +34,13 @@ move_one() {
     local item="$1"
     local dest="$2"
 
-    rsync -aH --info=progress2 \
-        --no-perms \
-        --no-owner \
-        --no-group \
-        --inplace \
-        --remove-source-files \
-        "$item" \
-        "$dest"/
+    rsync -rO --info=progress2 \
+    --no-perms \
+    --no-owner \
+    --no-group \
+    --remove-source-files \
+    "$item" \
+    "$dest"/
 
     # Clean up empty directories left behind
     if [[ -d "$item" ]]; then
